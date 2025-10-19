@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyCards</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title">StudyCards</h1>
+      <button class="button button--ghost" id="downloadSetBtn" disabled>Download Set CSV</button>
+    </header>
+
+    <section class="card" id="introView">
+      <h2 class="card__title">Build your study set</h2>
+      <p class="card__subtitle">Choose how you would like to get started.</p>
+      <div class="option-grid">
+        <button class="option" id="createSetOption">
+          <span class="option__glyph">✏️</span>
+          <span class="option__title">Create in app</span>
+          <span class="option__text">Add cards manually with friendly tools.</span>
+        </button>
+        <button class="option" id="uploadSetOption">
+          <span class="option__glyph">📄</span>
+          <span class="option__title">Upload CSV</span>
+          <span class="option__text">Import a comma-separated file.</span>
+        </button>
+      </div>
+      <div class="instruction" id="uploadInstruction">
+        <h3>CSV format</h3>
+        <p>Each line should include <strong>term, definition</strong>. Optional header row is ignored.</p>
+        <p>Example:</p>
+        <pre>Term,Definition
+Cell,The basic unit of life
+Mitochondria,Powerhouse of the cell</pre>
+      </div>
+    </section>
+
+    <section class="card hidden" id="builderView">
+      <h2 class="card__title">Create flashcards</h2>
+      <form id="cardForm" class="card-form">
+        <label class="pill-input">
+          <span>Term</span>
+          <input type="text" id="termInput" required />
+        </label>
+        <label class="pill-input">
+          <span>Definition</span>
+          <input type="text" id="definitionInput" required />
+        </label>
+        <button type="submit" class="button">Add card</button>
+      </form>
+      <div class="card-list" id="cardList"></div>
+      <div class="card__actions">
+        <button class="button button--secondary" id="builderBack">Back</button>
+        <button class="button" id="builderReady" disabled>Ready!</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="uploadView">
+      <h2 class="card__title">Upload your CSV</h2>
+      <p class="card__subtitle">Select a CSV file to import your study set.</p>
+      <label class="pill-input pill-input--file">
+        <span>Choose file</span>
+        <input type="file" id="fileInput" accept=".csv" />
+      </label>
+      <div class="card__actions">
+        <button class="button button--secondary" id="uploadBack">Back</button>
+        <button class="button" id="uploadReady" disabled>Ready!</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="modeView">
+      <h2 class="card__title">Choose a study mode</h2>
+      <div class="option-grid option-grid--modes">
+        <button class="option" id="classicMode">
+          <span class="option__glyph">🗂️</span>
+          <span class="option__title">Know &amp; Review</span>
+          <span class="option__text">Cycle through cards, focus on what needs more time.</span>
+        </button>
+        <button class="option" id="learnMode">
+          <span class="option__glyph">🧠</span>
+          <span class="option__title">Learn it all</span>
+          <span class="option__text">Multiple choice then type answers with spaced practice.</span>
+        </button>
+      </div>
+      <div class="card__actions">
+        <button class="button button--secondary" id="modeBack">Back</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="studyView">
+      <div class="study-header">
+        <button class="button button--secondary" id="studyBack">Back to modes</button>
+        <div class="study-status" id="studyStatus"></div>
+      </div>
+      <div class="study-content" id="studyContent"></div>
+    </section>
+  </main>
+
+  <div class="overlay hidden" id="downloadOverlay">
+    <div class="overlay__content">
+      <h2>Name your download</h2>
+      <label class="pill-input">
+        <span>File name</span>
+        <input type="text" id="downloadName" placeholder="my-flashcards" />
+      </label>
+      <div class="overlay__actions">
+        <button class="button button--secondary" id="downloadCancel">Cancel</button>
+        <button class="button" id="downloadConfirm">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
