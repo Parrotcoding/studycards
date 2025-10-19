@@ -283,6 +283,10 @@ main.app {
   outline: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -291,14 +295,6 @@ main.app {
   align-items: center;
   justify-content: center;
   padding: 24px;
-}
-
-.hidden {
-  display: none;
-}
-
-.overlay.hidden {
-  display: none;
 }
 
 .overlay__content {
